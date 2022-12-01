@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -23,7 +24,7 @@ public class Order {
     private Member member;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;

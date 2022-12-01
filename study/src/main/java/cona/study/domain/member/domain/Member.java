@@ -36,8 +36,9 @@ public class Member {
                      String password,
                      String nickname,
                      String email,
+                     Address address,
                      RoleType role) {
-        return new Member(name, password, nickname, email, role);
+        return new Member(name, password, nickname, email, address, role);
     }
 
     protected Member() {}
@@ -46,11 +47,13 @@ public class Member {
                   String password,
                   String nickname,
                   String email,
+                  Address address,
                   RoleType role) {
         this.name = name;
         this.password = password;
         this.nickname = nickname;
         this.email = email;
+        this.address = address;
         this.role = role;
     }
 

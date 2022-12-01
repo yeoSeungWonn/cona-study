@@ -8,7 +8,8 @@ import lombok.Getter;
 @Entity
 public class OrderItem {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -30,8 +31,13 @@ public class OrderItem {
         getItem().addStock(count);
     }
 
+    public void addOrderToOrderItem(Order order) {
+        this.order = order;
+    }
+
     protected OrderItem() {
     }
+
     private OrderItem(Item item, int discount, int count) {
         this.item = item;
         this.count = count;

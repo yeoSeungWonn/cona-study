@@ -13,13 +13,18 @@ import java.time.LocalDateTime;
 @Entity
 public class Member {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false) private String name;
-    @Column(nullable = false) private String password;
-    @Column(nullable = false, unique = true) private String nickname;
-    @Column(nullable = false, unique = true) private String email;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private String password;
+    @Column(nullable = false, unique = true)
+    private String nickname;
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Embedded
     private Address address;
@@ -28,27 +33,31 @@ public class Member {
     @Column(nullable = false)
     private RoleType role;
 
-    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt;
+    @CreatedDate
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
     @LastModifiedDate
-    @Column(nullable = false) private LocalDateTime modifiedAt;
+    @Column(nullable = false)
+    private LocalDateTime modifiedAt;
 
     public static Member of(String name,
-                     String password,
-                     String nickname,
-                     String email,
-                     Address address,
-                     RoleType role) {
+                            String password,
+                            String nickname,
+                            String email,
+                            Address address,
+                            RoleType role) {
         return new Member(name, password, nickname, email, address, role);
     }
 
-    protected Member() {}
+    protected Member() {
+    }
 
     private Member(String name,
-                  String password,
-                  String nickname,
-                  String email,
-                  Address address,
-                  RoleType role) {
+                   String password,
+                   String nickname,
+                   String email,
+                   Address address,
+                   RoleType role) {
         this.name = name;
         this.password = password;
         this.nickname = nickname;

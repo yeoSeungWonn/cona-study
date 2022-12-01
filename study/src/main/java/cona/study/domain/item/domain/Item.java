@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Item {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -21,9 +22,11 @@ public class Item {
     private int stockQuantity;
 
     @CreatedDate
-    @Column(nullable = false) private LocalDateTime createdAt;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
     @LastModifiedDate
-    @Column(nullable = false) private LocalDateTime updatedAt;
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 
 
     public static Item of(String name, int price, int stockQuantity) {

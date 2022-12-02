@@ -49,6 +49,18 @@ public class Member {
         return new Member(name, password, nickname, email, address, role);
     }
 
+    public void changeEmail(String email) {
+        this.email = email;
+    }
+
+    public void changeNickName(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
     protected Member() {
     }
 

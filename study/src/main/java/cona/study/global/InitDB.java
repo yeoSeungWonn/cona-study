@@ -57,6 +57,11 @@ public class InitDB {
             Item itemB = Item.of("itemB", 12000, 120);
             em.persist(itemB);
 
+            for (int i = 0; i < 10; i++) {
+                Item item = Item.of("item"+ i, 10000 * i, 100);
+                em.persist(item);
+            }
+
         }
     }
 }

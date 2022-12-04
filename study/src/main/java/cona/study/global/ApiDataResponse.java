@@ -1,5 +1,8 @@
 package cona.study.global;
 
+import lombok.Getter;
+
+@Getter
 public class ApiDataResponse<T> {
 
     private T data;

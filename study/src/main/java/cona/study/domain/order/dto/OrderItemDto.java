@@ -1,6 +1,8 @@
 package cona.study.domain.order.dto;
 
 import cona.study.domain.order.domain.OrderItem;
+import lombok.Builder;
+
 
 public record OrderItemDto(
         String itemName,
@@ -13,8 +15,8 @@ public record OrderItemDto(
         return new OrderItemDto(
                 orderItem.getItem().getName(),
                 orderItem.getItem().getPrice(),
-                orderItem.getOrderPrice(),
                 orderItem.getDiscount(),
+                orderItem.getOrderPrice(),
                 orderItem.getCount()
         );
     }

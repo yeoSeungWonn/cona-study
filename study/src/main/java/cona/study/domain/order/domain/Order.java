@@ -3,13 +3,17 @@ package cona.study.domain.order.domain;
 import cona.study.domain.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "orders")
@@ -23,7 +27,7 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
@@ -33,13 +37,17 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime orderDate;
 
+    @LastModifiedDate
+    @Column(nullable = false)
+    private LocalDateTime modifiedDate;
+
     public static Order of(Member member, List<OrderItem> orderItems) {
-        Order orders = new Order(member);
+        Order order = new Order(member);
 
         for (OrderItem orderItem : orderItems) {
-            orders.setOrderItem(orderItem);
+            order.setOrderItem(orderItem);
         }
-        return orders;
+        return order;
     }
 
     public void cancel() {

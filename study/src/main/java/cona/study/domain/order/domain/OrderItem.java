@@ -3,9 +3,11 @@ package cona.study.domain.order.domain;
 import cona.study.domain.item.domain.Item;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @Entity
+@Slf4j
 public class OrderItem {
 
     @Id

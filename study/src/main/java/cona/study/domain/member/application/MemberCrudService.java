@@ -1,8 +1,8 @@
 package cona.study.domain.member.application;
 
-import cona.study.domain.member.domain.Address;
 import cona.study.domain.member.domain.Member;
 import cona.study.domain.member.dto.GetMembersRes;
+import cona.study.domain.member.dto.PatchMemberReq;
 import cona.study.domain.member.dto.PostMemberReq;
 import cona.study.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -50,22 +50,32 @@ public class MemberCrudService {
         ));
     }
 
+    public GetMembersRes findByNickname(String nickname) {
+        Member member = memberRepository.findByNickname(nickname).orElseThrow(
+                () -> new RuntimeException("없는 멤버")
+        );
+
+        return GetMembersRes.of(member);
+    }
+
     @Transactional
-    public boolean editAccount(Long memberId, String password, String nickname, String email) {
+    public boolean editAccount(Long memberId, PatchMemberReq patchMemberReq) {
         Member member = memberRepository.findById(memberId).orElseThrow(
                 () -> new RuntimeException("없는 맴버")
         );
-
-        if (!password.isBlank()) {
-            member.changePassword(password);
+        if (patchMemberReq.password() != null &&
+                !patchMemberReq.password().isBlank()) {
+            member.changePassword(patchMemberReq.password());
         }
 
-        if (!nickname.isBlank()) {
-            member.changeNickName(nickname);
+        if (patchMemberReq.nickname() != null &&
+                !patchMemberReq.nickname().isBlank()) {
+            member.changeNickName(patchMemberReq.nickname());
         }
 
-        if (!email.isBlank()) {
-            member.changeEmail(email);
+        if (patchMemberReq.email() != null &&
+                !patchMemberReq.email().isBlank()) {
+            member.changeEmail(patchMemberReq.email());
         }
 
         return true;

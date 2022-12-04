@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import static cona.study.domain.member.domain.RoleType.USER;
+import static cona.study.domain.member.domain.RoleType.VIP;
 
 @Component
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class InitDB {
             em.persist(member2);
 
             Address addressC = Address.of("Seoul", "streetA", "101");
-            Member member3 = Member.of("memberC", "cccc", "memberC", "memberC@gmail.com", addressC, USER);
+            Member member3 = Member.of("memberC", "cccc", "memberC", "memberC@gmail.com", addressC, VIP);
             em.persist(member3);
 
             Address address = Address.of("Seoul", "street", "101");

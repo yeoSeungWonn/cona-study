@@ -28,8 +28,8 @@ public record GetOrderRes(
                         .map(OrderItemDto::of)
                         .collect(Collectors.toList()),
                 order.getTotalPrice() + order.getTotalDiscount(),
-                order.getTotalPrice(),
                 order.getTotalDiscount(),
+                order.getTotalPrice(),
                 order.getOrderDate(),
                 order.getOrderStatus()
         );

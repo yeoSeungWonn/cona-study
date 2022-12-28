@@ -28,9 +28,9 @@ public class MemberCrudService {
 
     public List<GetMembersRes> findAll(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Member> memberList = memberRepository.findAll(pageRequest);
+        Page<Member> memberList1 = memberRepository.findAll(pageRequest);
 
-        return memberList.stream()
+        return memberList1.stream()
                 .map(GetMembersRes::of)
                 .collect(Collectors.toList());
     }

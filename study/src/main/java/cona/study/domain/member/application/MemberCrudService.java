@@ -5,7 +5,6 @@ import cona.study.domain.member.dto.GetMembersRes;
 import cona.study.domain.member.dto.PatchMemberReq;
 import cona.study.domain.member.dto.PostMemberReq;
 import cona.study.domain.member.repository.MemberRepository;
-import cona.study.global.Error.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -48,7 +46,7 @@ public class MemberCrudService {
         Optional<Member> findMember = memberRepository.findById(memberId);
 
         return GetMembersRes.of(findMember.orElseThrow(
-                () -> new RuntimeException("없는 멤버")
+                () -> new RuntimeException("없는 맴버")
         ));
     }
 
